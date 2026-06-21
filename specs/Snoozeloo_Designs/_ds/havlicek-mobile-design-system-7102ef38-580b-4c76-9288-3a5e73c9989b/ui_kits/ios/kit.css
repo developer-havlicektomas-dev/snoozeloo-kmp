@@ -1,0 +1,126 @@
+/* iOS UI kit shared styles. Imports the system tokens and adds
+   kit-specific component classes. Uses Inter (brand) over iOS chrome.
+*/
+@import url("../../colors_and_type.css");
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: #E4E4E7;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+#root { min-height: 100vh; }
+
+.stage {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; padding: 32px;
+}
+
+/* ---------- Kit primitives (used across screens) ---------- */
+
+.k-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 50px; padding: 0 20px; border-radius: 14px;
+  font-family: var(--font-sans); font-size: 17px; font-weight: 600;
+  border: 0; cursor: pointer; letter-spacing: -0.005em;
+  transition: all 120ms cubic-bezier(.2,.8,.2,1);
+}
+.k-btn.primary { background: #12B76A; color: #FFF; }
+.k-btn.primary:active { background: #039855; transform: scale(0.98); }
+.k-btn.secondary { background: rgba(120, 120, 128, 0.12); color: #09090B; }
+.k-btn.full { width: 100%; }
+
+.k-input {
+  width: 100%; height: 48px; padding: 0 16px;
+  background: #FFFFFF; color: #09090B;
+  border: 1px solid #E4E4E7; border-radius: 12px;
+  font-family: var(--font-sans); font-size: 17px;
+  outline: none; transition: all 120ms cubic-bezier(.2,.8,.2,1);
+}
+.k-input::placeholder { color: #A1A1AA; }
+.k-input:focus { border-color: #12B76A; box-shadow: 0 0 0 4px rgba(18,183,106,0.18); }
+
+.dark .k-input { background: #1C1C1E; color: #FAFAFA; border-color: #2A2A2C; }
+.dark .k-input::placeholder { color: #71717A; }
+
+.k-fab {
+  position: absolute; bottom: 96px; right: 20px;
+  width: 56px; height: 56px; border-radius: 28px;
+  background: #12B76A; color: #FFF;
+  display: grid; place-items: center;
+  box-shadow: 0 8px 20px rgba(18,183,106,0.35), 0 2px 6px rgba(18,183,106,0.2);
+  border: 0; cursor: pointer;
+  transition: transform 120ms cubic-bezier(.2,.8,.2,1);
+}
+.k-fab:active { transform: scale(0.94); }
+
+.k-checkbox {
+  width: 22px; height: 22px; border-radius: 11px;
+  border: 1.5px solid #D4D4D8; background: transparent;
+  display: grid; place-items: center; cursor: pointer; flex-shrink: 0;
+  transition: all 120ms cubic-bezier(.2,.8,.2,1);
+}
+.k-checkbox.checked { border-color: #12B76A; background: #12B76A; }
+.k-checkbox.checked svg { color: #FFF; }
+.k-checkbox svg { width: 12px; height: 12px; color: transparent; }
+
+.k-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  height: 22px; padding: 0 9px; border-radius: 11px;
+  font-size: 12px; font-weight: 600; letter-spacing: -0.005em;
+}
+.k-tag.green { background: #ECFDF3; color: #027A48; }
+.k-tag.amber { background: #FFFBEB; color: #B45309; }
+.k-tag.blue  { background: #EFF6FF; color: #1D4ED8; }
+.k-tag.gray  { background: #F4F4F5; color: #3F3F46; }
+.k-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+.dark .k-tag.green { background: rgba(50,213,131,0.15); color: #6CE9A6; }
+.dark .k-tag.amber { background: rgba(251,191,36,0.15); color: #FBBF24; }
+.dark .k-tag.blue  { background: rgba(96,165,250,0.15); color: #93C5FD; }
+.dark .k-tag.gray  { background: rgba(161,161,170,0.15); color: #A1A1AA; }
+
+/* avatar */
+.k-avatar {
+  border-radius: 50%; background: #ECFDF3; color: #027A48;
+  display: grid; place-items: center;
+  font-weight: 600; flex-shrink: 0;
+}
+
+/* ---------- Tab bar ---------- */
+.tab-bar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 8px 0 30px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  backdrop-filter: blur(28px) saturate(1.6);
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
+  background: rgba(255,255,255,0.78);
+  border-top: 0.5px solid rgba(60,60,67,0.18);
+  z-index: 30;
+}
+.dark .tab-bar { background: rgba(20,20,22,0.82); border-top-color: rgba(84,84,88,0.4); }
+.tab-bar .tab {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  font-size: 10px; font-weight: 500; color: #8E8E93;
+  padding: 4px 0; cursor: pointer; user-select: none;
+}
+.tab-bar .tab svg { width: 26px; height: 26px; }
+.tab-bar .tab.active { color: #12B76A; }
+.dark .tab-bar .tab.active { color: #32D583; }
+
+/* ---------- Helpers ---------- */
+.row { display: flex; align-items: center; }
+.col { display: flex; flex-direction: column; }
+.scroll { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.scroll::-webkit-scrollbar { display: none; }
+
+/* Screen content with bottom padding to clear tab bar */
+.screen-content { padding-bottom: 100px; }
+
+/* Override iOS frame default background to use brand neutral */
+.brand-bg { background: #F4F4F5; }
+.brand-bg.dark { background: #09090B; }

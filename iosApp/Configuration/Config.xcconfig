@@ -1,0 +1,10 @@
+TEAM_ID=
+
+PRODUCT_NAME=Snoozeloo
+PRODUCT_BUNDLE_IDENTIFIER=dev.havlicektomas.snoozeloo.Snoozeloo$(TEAM_ID)
+
+CURRENT_PROJECT_VERSION=1
+MARKETING_VERSION=1.0
+
+// SQLDelight's native driver links against the system SQLite.
+OTHER_LDFLAGS=$(inherited) -lsqlite3
